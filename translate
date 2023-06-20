@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Google Translate Example</title>
+</head>
+<body>
+  <h1>Google Translate Example</h1>
+
+  <h2>Translate Text</h2>
+  <textarea id="sourceText" rows="4" cols="50"></textarea>
+  <br>
+  <button onclick="translateText()">Translate</button>
+
+  <h2>Translated Text</h2>
+  <div id="translatedText"></div>
+
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  <script>
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+    }
+
+    function translateText() {
+      const sourceText = document.getElementById('sourceText').value;
+      const translatedTextElement = document.getElementById('translatedText');
+
+      googleTranslateElementInit();
+
+      setTimeout(function () {
+        const translatedText = document.getElementsByClassName('goog-textarea')[0].innerText;
+        translatedTextElement.innerText = translatedText;
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
